@@ -39,7 +39,7 @@ int main (int argc, char **argv)
 
     for (int k = 0; k < _M_; k++) 
     {
-        // omp parallel for pragma should be placed here!
+        #pragma omp parallel for
         for (int i = 0; i < n; i++) 
         {
             double *ai = a + i * _N_; // address of i-th matrix row
@@ -55,8 +55,11 @@ int main (int argc, char **argv)
 
     // Compute norm of vector Y here: sum=||Y||
     double sum = 0.0;
-    // omp parallel for pragma with "reduction(+:sum)" should be placed here
-    for (int i = 0; i < n; i++) sum += y[i] * y[i];
+    #pragma omp parallel for reduction(+:sum)
+    for (int i = 0; i < n; i++)
+    {
+        sum += y[i] * y[i];
+    }
 
     double sum_glob = 0.0;
     MPI_Allreduce(&sum, &sum_glob, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
