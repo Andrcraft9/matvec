@@ -1,5 +1,5 @@
-CC = gcc
-CFLAGS = -O3
+CC = mpicc -g
+CFLAGS = -O3 -fopenmp
 
 all:
 	$(CC) $(CFLAGS) -o mvm mvm.c -lm
