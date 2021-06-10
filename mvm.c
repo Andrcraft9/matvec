@@ -22,30 +22,42 @@ int main (int argc, char **argv)
     double *y      = malloc(n       * sizeof(double)); // local components of vector y
     double *x_glob = malloc(    _N_ * sizeof(double)); // working vector with global X
 
-    for (int i = 0; i < n; i++) 
+    #pragma omp parallel
     {
-        for (int j = 0; j < _N_; j++)
+        #pragma omp for schedule(static)
+        for (int i = 0; i < n; i++) 
         {
-            a[i*_N_ + j] = 1. / (1. + i+id*n + j); // global i and j
+            for (int j = 0; j < _N_; j++)
+            {
+                a[i*_N_ + j] = 1. / (1. + i+id*n + j); // global i and j
+            }
+        }
+
+        #pragma omp for schedule(static)
+        for (int i = 0; i < n; i++)
+        {
+            x[i] = i+id*n; // local components of vector x
+            y[i] = 0.;
         }
     }
-    for (int i = 0; i < n; i++) x[i] = i+id*n; // local components of vector x
-    for (int i = 0; i < n; i++) y[i] = 0.;
 
     MPI_Barrier(MPI_COMM_WORLD);
     double T = MPI_Wtime();
 
     MPI_Allgather(x, n, MPI_DOUBLE, x_glob, n, MPI_DOUBLE, MPI_COMM_WORLD); 
 
-    for (int k = 0; k < _M_; k++) 
+    #pragma omp parallel
     {
-        #pragma omp parallel for
-        for (int i = 0; i < n; i++) 
+        for (int k = 0; k < _M_; k++) 
         {
-            double *ai = a + i * _N_; // address of i-th matrix row
-            for (int j = 0; j < _N_; j++)
+            #pragma omp for schedule(static)
+            for (int i = 0; i < n; i++) 
             {
-                y[i] += ai[j] * x_glob[j];
+                double *ai = a + i * _N_; // address of i-th matrix row
+                for (int j = 0; j < _N_; j++)
+                {
+                    y[i] += ai[j] * x_glob[j];
+                }
             }
         }
     }
@@ -55,7 +67,7 @@ int main (int argc, char **argv)
 
     // Compute norm of vector Y here: sum=||Y||
     double sum = 0.0;
-    #pragma omp parallel for reduction(+:sum)
+    #pragma omp parallel for schedule(static) reduction(+:sum)
     for (int i = 0; i < n; i++)
     {
         sum += y[i] * y[i];
