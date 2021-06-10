@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --job-name=21-FIO
+#SBATCH --partition x20core
+#SBATCH --nodes=1 --ntasks-per-node=40
+#SBATCH --time=30:00
+#SBATCH --chdir=.
+
+filename=mvm-9216-mix.dat
+
+rm -f $filename
+## Here: p - number of MPI processes ; t - number of OMP threads ; pt=p*t
+pt=$SLURM_NTASKS
+ for p in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 40; do
+     t=$(($pt / $p))
+     if [[ $pt == $(($p * $t)) ]] ; then
+         export OMP_NUM_THREADS=$t ; mpirun -np $p ./mvm9216 >> $filename
+     fi
+done
