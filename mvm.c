@@ -24,7 +24,7 @@ int main (int argc, char **argv)
 
     #pragma omp parallel
     {
-        #pragma omp for schedule(static)
+        #pragma omp for nowait
         for (int i = 0; i < n; i++) 
         {
             for (int j = 0; j < _N_; j++)
@@ -33,7 +33,7 @@ int main (int argc, char **argv)
             }
         }
 
-        #pragma omp for schedule(static)
+        #pragma omp for nowait
         for (int i = 0; i < n; i++)
         {
             x[i] = i+id*n; // local components of vector x
@@ -50,7 +50,7 @@ int main (int argc, char **argv)
     {
         for (int k = 0; k < _M_; k++) 
         {
-            #pragma omp for schedule(static)
+            #pragma omp for nowait
             for (int i = 0; i < n; i++) 
             {
                 double *ai = a + i * _N_; // address of i-th matrix row
@@ -67,7 +67,7 @@ int main (int argc, char **argv)
 
     // Compute norm of vector Y here: sum=||Y||
     double sum = 0.0;
-    #pragma omp parallel for schedule(static) reduction(+:sum)
+    #pragma omp parallel for reduction(+:sum)
     for (int i = 0; i < n; i++)
     {
         sum += y[i] * y[i];
