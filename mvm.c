@@ -4,8 +4,8 @@
 #include <stdio.h>
 #include <malloc.h>
 
-#define _N_ 1152           // matrix dimension and vector size
-#define _M_ 100            // just a number of repetitions
+#define _N_ 9216             // matrix dimension and vector size
+#define _M_ 1000             // just a number of repetitions
 #define _ETALON_NORM_ 20580.1167
 
 int main (int argc, char **argv)
