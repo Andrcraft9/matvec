@@ -1,0 +1,13 @@
+MPI-1p mvm: N=1152 np=1 th=1 norm=20580.116664 (etalon=20580.116700, diff=0.000036) time=40.716926 perf=3259.34 MFLOPS
+MPI-1p mvm: N=1152 np=1 th=2 norm=20580.116664 (etalon=20580.116700, diff=0.000036) time=20.568860 perf=6452.01 MFLOPS
+MPI-1p mvm: N=1152 np=1 th=3 norm=20580.116664 (etalon=20580.116700, diff=0.000036) time=13.964469 perf=9503.43 MFLOPS
+MPI-1p mvm: N=1152 np=1 th=4 norm=20580.116664 (etalon=20580.116700, diff=0.000036) time=10.534918 perf=12597.19 MFLOPS
+MPI-1p mvm: N=1152 np=1 th=6 norm=20580.116664 (etalon=20580.116700, diff=0.000036) time=7.153025 perf=18553.05 MFLOPS
+MPI-1p mvm: N=1152 np=1 th=8 norm=20580.116664 (etalon=20580.116700, diff=0.000036) time=5.022182 perf=26424.85 MFLOPS
+MPI-1p mvm: N=1152 np=1 th=9 norm=20580.116664 (etalon=20580.116700, diff=0.000036) time=4.141798 perf=32041.74 MFLOPS
+MPI-1p mvm: N=1152 np=1 th=12 norm=20580.116664 (etalon=20580.116700, diff=0.000036) time=3.921093 perf=33845.26 MFLOPS
+MPI-1p mvm: N=1152 np=1 th=16 norm=20580.116664 (etalon=20580.116700, diff=0.000036) time=4.364803 perf=30404.67 MFLOPS
+MPI-1p mvm: N=1152 np=1 th=18 norm=20580.116664 (etalon=20580.116700, diff=0.000036) time=4.597074 perf=28868.45 MFLOPS
+MPI-1p mvm: N=1152 np=1 th=24 norm=20580.116664 (etalon=20580.116700, diff=0.000036) time=4.831474 perf=27467.89 MFLOPS
+MPI-1p mvm: N=1152 np=1 th=32 norm=20580.116664 (etalon=20580.116700, diff=0.000036) time=4.327237 perf=30668.62 MFLOPS
+MPI-1p mvm: N=1152 np=1 th=36 norm=20580.116664 (etalon=20580.116700, diff=0.000036) time=4.421778 perf=30012.90 MFLOPS
