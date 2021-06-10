@@ -1,0 +1,4 @@
+MPI-1p mvm: N=1152 np=1 th=40 norm=20580.116664 (etalon=20580.116700, diff=0.000036) time=5.017273 perf=26450.70 MFLOPS
+MPI-1p mvm: N=1152 np=2 th=20 norm=20580.116664 (etalon=20580.116700, diff=0.000036) time=5.933597 perf=22365.93 MFLOPS
+MPI-1p mvm: N=1152 np=4 th=10 norm=20580.116664 (etalon=20580.116700, diff=0.000036) time=2.352456 perf=56413.56 MFLOPS
+MPI-1p mvm: N=1152 np=8 th=5  norm=20580.116664 (etalon=20580.116700, diff=0.000036) time=1.845872 perf=71895.78 MFLOPS
